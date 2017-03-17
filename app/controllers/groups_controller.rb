@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  before_action :authenticate_user! , only: [:new]
   def index
     @groups = Group.all
   end
@@ -20,7 +21,7 @@ class GroupsController < ApplicationController
 
     if @group.save
       redirect_to groups_path
-    else 
+    else
       render :new
     end
   end
